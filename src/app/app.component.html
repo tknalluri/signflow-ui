@@ -1,0 +1,73 @@
+
+<main>
+  <div class="container">
+    <!-- Left Section with Logo -->
+    <div class="left-section">
+      <div class="logo">📄</div>
+      <h1>SignFlow</h1>
+      <p>Simplify your document signing process with our secure and easy-to-use platform</p>
+    </div>
+
+    <!-- Right Section with Sign Up Form (Material) -->
+    <div class="right-section">
+      <div class="form-header">
+        <h2>Create Account</h2>
+        <p>Get started in less than a minute</p>
+      </div>
+
+      <form (ngSubmit)="onSignUp()" #signupForm="ngForm">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput id="fullname" placeholder="John Doe" [(ngModel)]="formData.fullName" name="fullName" #fullName="ngModel" required />
+            <mat-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Full name is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" id="email" placeholder="john@example.com" [(ngModel)]="formData.email" name="email" #emailRef="ngModel" required email />
+            <mat-error *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)">
+              <span *ngIf="emailRef.errors?.['required']">Email is required</span>
+              <span *ngIf="emailRef.errors?.['email']">Enter a valid email</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" placeholder="Create a strong password" [(ngModel)]="formData.password" name="password" #passwordRef="ngModel" required minlength="6" />
+            <mat-error *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)">
+              <span *ngIf="passwordRef.errors?.['required']">Password is required</span>
+              <span *ngIf="passwordRef.errors?.['minlength']">Password must be at least 6 characters</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="checkbox-group">
+          <mat-checkbox [(ngModel)]="formData.agreeToTerms" name="agreeToTerms" #agreeRef="ngModel" required> I agree to the Terms of Service</mat-checkbox>
+        </div>
+        <div class="checkbox-error" *ngIf="submitted && !formData.agreeToTerms">You must agree to the Terms of Service</div>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid || !formData.agreeToTerms">Create Account</button>
+
+        <div class="login-link">
+          Already have an account? <a href="#login">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<router-outlet />

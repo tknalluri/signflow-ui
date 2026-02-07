@@ -1,0 +1,111 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+
+.action-tiles {
+  margin-top: 0.5rem;
+}
+
+.tile-card {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.tile-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  border-color: #cbd5f5;
+}
+
+.tile-card:active {
+  transform: translateY(0);
+}
+
+.tile-icon {
+  font-size: 2rem;
+  color: #0d6efd;
+}
+
+.tile-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.tile-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.btn-group-sm .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.bi {
+  font-size: 1rem;
+}
+
+.table {
+  background-color: white;
+}
+
+.table tbody tr {
+  cursor: pointer;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+}
+
+.user-name {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu .btn.btn-link {
+  text-decoration: none;
+  padding: 0;
+}
+
+.user-menu .btn.btn-link:focus {
+  box-shadow: none;
+}
+
+.user-menu .dropdown-menu {
+  max-width: calc(100vw - 2rem);
+  right: 0;
+  left: auto;
+  white-space: nowrap;
+}

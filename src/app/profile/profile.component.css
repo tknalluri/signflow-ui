@@ -1,0 +1,30 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.profile-item {
+  padding: 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6c757d;
+  margin-bottom: 6px;
+}
+
+.value {
+  font-weight: 600;
+  color: #212529;
+}

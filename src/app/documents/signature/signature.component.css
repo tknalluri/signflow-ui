@@ -1,0 +1,144 @@
+.signature-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.row {
+  margin: 0;
+}
+
+.pdf-preview-panel {
+  background-color: #525659;
+  padding: 20px;
+  height: calc(100vh - 56px);
+  overflow: auto;
+}
+
+.signature-panel {
+  background-color: #f8f9fa;
+  padding: 20px;
+  height: calc(100vh - 56px);
+  overflow: auto;
+}
+
+.toolbar {
+  background-color: #323639;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.pdf-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+canvas {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.signature-canvas {
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  cursor: crosshair;
+  background-color: white;
+}
+
+.signature-overlay {
+  position: absolute;
+  cursor: move;
+  border: 2px dashed #007bff;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.signature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #007bff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.handle-nw {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.handle-ne {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.handle-sw {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.handle-se {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+
+.handle-n {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.handle-s {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.handle-e {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.handle-w {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.typed-signature-preview canvas {
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+}
+
+.signature-pad-container {
+  text-align: center;
+}

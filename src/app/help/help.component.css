@@ -1,0 +1,24 @@
+.help-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.checklist {
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.checklist input {
+  margin-right: 8px;
+}
+
+.video-placeholder {
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  color: #6c757d;
+  background: #fff;
+}

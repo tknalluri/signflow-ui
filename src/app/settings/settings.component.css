@@ -1,0 +1,36 @@
+.settings-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.section-header {
+  margin-bottom: 16px;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 992px) {
+  .signature-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}

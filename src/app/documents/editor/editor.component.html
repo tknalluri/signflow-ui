@@ -1,0 +1,61 @@
+<div class="editor-page">
+	<div class="page-loader" *ngIf="fullPageLoading">
+		<span class="spinner-border" role="status" aria-hidden="true"></span>
+	</div>
+	<div class="toolbar">
+		<button class="btn btn-outline-secondary btn-sm" (click)="goBack()">Back</button>
+		<div class="doc-title">{{ document?.fileName || 'Document' }}</div>
+		<div class="toolbar-actions">
+			<button class="btn btn-primary btn-sm btn-save" (click)="saveEdits()" [disabled]="saving">
+				<span *ngIf="!saving">Save</span>
+				<span *ngIf="saving" class="d-inline-flex align-items-center gap-2">
+					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+					Saving…
+				</span>
+			</button>
+			<button class="btn btn-success btn-sm btn-download" (click)="downloadEdited()">Download</button>
+		</div>
+	</div>
+
+	<div class="editor-content">
+		<div class="editor-viewer">
+			<div *ngIf="loading || htmlLoading" class="text-center py-5">
+				<span class="spinner-border" role="status" aria-hidden="true"></span>
+			</div>
+			<div class="html-editor-wrapper" *ngIf="htmlReady">
+				<div class="html-toolbar">
+					<button
+						class="btn btn-sm"
+						[class.btn-secondary]="!isBoldActive"
+						[class.btn-dark]="isBoldActive"
+						(click)="execEditorCommand('bold')"
+					>
+						Bold
+					</button>
+					<button
+						class="btn btn-sm"
+						[class.btn-secondary]="!isItalicActive"
+						[class.btn-dark]="isItalicActive"
+						(click)="execEditorCommand('italic')"
+					>
+						Italic
+					</button>
+					<button
+						class="btn btn-sm"
+						[class.btn-secondary]="!isUnderlineActive"
+						[class.btn-dark]="isUnderlineActive"
+						(click)="execEditorCommand('underline')"
+					>
+						Underline
+					</button>
+				</div>
+				<iframe
+					class="html-editor-frame"
+					#htmlFrame
+					[attr.srcdoc]="htmlDocSafe"
+					(load)="onFrameLoad()"
+				></iframe>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="viewer-container">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand">{{document?.fileName || 'Document Viewer'}}</span>
+      <button class="btn btn-outline-light btn-sm" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+    </div>
+  </nav>
+
+  <div class="viewer-content">
+    <div class="toolbar">
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-outline-secondary" (click)="zoomOut()" title="Zoom Out">
+          <i class="bi bi-zoom-out"></i>
+        </button>
+        <span class="btn btn-outline-secondary disabled">{{(scale * 100).toFixed(0)}}%</span>
+        <button class="btn btn-outline-secondary" (click)="zoomIn()" title="Zoom In">
+          <i class="bi bi-zoom-in"></i>
+        </button>
+      </div>
+      <div class="page-controls">
+        <button class="btn btn-sm btn-outline-secondary" (click)="previousPage()" [disabled]="currentPage === 1">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <span class="mx-2">Page {{currentPage}} of {{totalPages}}</span>
+        <button class="btn btn-sm btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-primary" type="button" [routerLink]="['/documents/editor', documentId]">
+          <i class="bi bi-pen"></i> Edit
+        </button>
+        <button class="btn btn-success" type="button" [routerLink]="['/documents/signature', documentId]">
+          <i class="bi bi-pen-fill"></i> Sign
+        </button>
+      </div>
+    </div>
+
+    <div class="pdf-container">
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <canvas #pdfCanvas></canvas>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+.documents-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+.home-icon {
+  font-size: 1.4rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+}
+
+.user-name {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu .btn.btn-link {
+  text-decoration: none;
+  padding: 0;
+}
+
+.user-menu .btn.btn-link:focus {
+  box-shadow: none;
+}
+
+.user-menu .dropdown-menu {
+  max-width: calc(100vw - 2rem);
+  right: 0;
+  left: auto;
+  white-space: nowrap;
+}
+
+.btn-group-sm .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

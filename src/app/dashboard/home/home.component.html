@@ -1,0 +1,64 @@
+<div class="dashboard-container">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">SignFlow</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown user-menu" [class.show]="isMenuOpen">
+            <button
+              type="button"
+              class="nav-link dropdown-toggle d-flex align-items-center gap-2 btn btn-link text-white"
+              [attr.aria-expanded]="isMenuOpen"
+              (click)="toggleUserMenu($event)">
+              <span class="user-avatar">{{ getInitials(currentUser?.name) }}</span>
+              <span class="user-name">{{currentUser?.name || 'Account'}}</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" [class.show]="isMenuOpen">
+              <li class="dropdown-header text-muted small">{{currentUser?.email}}</li>
+              <li><a class="dropdown-item" routerLink="/profile" (click)="closeUserMenu()">My Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/settings" (click)="closeUserMenu()">Settings</a></li>
+              <li><a class="dropdown-item" routerLink="/help" (click)="closeUserMenu()">Help & Support</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item" type="button" (click)="logout()">Sign out</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid p-4">
+    <!-- Action Tiles -->
+    <div class="action-tiles row g-4 mb-4">
+      <div class="col-12 col-md-4">
+        <button class="tile-card" type="button" (click)="loadDocuments()">
+          <span class="tile-icon bi bi-folder2-open"></span>
+          <span class="tile-title">My Documents</span>
+          <span class="tile-subtitle">Load and manage your files</span>
+        </button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="tile-card" type="button" (click)="pdfInput.click()">
+          <span class="tile-icon bi bi-upload"></span>
+          <span class="tile-title">Upload PDF</span>
+          <span class="tile-subtitle">Add a new PDF document</span>
+        </button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="tile-card" type="button" (click)="wordInput.click()">
+          <span class="tile-icon bi bi-file-earmark-word"></span>
+          <span class="tile-title">Upload Word</span>
+          <span class="tile-subtitle">Add a Word document</span>
+        </button>
+      </div>
+      <input #pdfInput type="file" accept=".pdf" (change)="onFileSelected($event)" style="display: none;">
+      <input #wordInput type="file" accept=".doc,.docx" (change)="onWordSelected($event)" style="display: none;">
+    </div>
+
+  </div>
+</div>

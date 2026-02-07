@@ -1,0 +1,133 @@
+<div class="signature-container">
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <span class="navbar-brand">Sign Document</span>
+      <button class="btn btn-outline-light btn-sm" (click)="goBack()">
+        <i class="bi bi-x-lg"></i> Cancel
+      </button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="row h-100">
+      <!-- PDF Preview -->
+      <div class="col-md-8 pdf-preview-panel">
+        <div class="toolbar">
+          <div class="page-controls">
+            <button class="btn btn-sm btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <span class="mx-2">Page {{currentPage}} of {{totalPages}}</span>
+            <button class="btn btn-sm btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="pdf-container position-relative">
+          <canvas #pdfCanvas></canvas>
+          <div 
+            *ngIf="signatureImage" 
+            class="signature-overlay"
+            #signatureOverlay
+            [style.left.px]="signaturePosition.x"
+            [style.top.px]="signaturePosition.y"
+            [style.width.px]="signatureSize.width"
+            [style.height.px]="signatureSize.height"
+            (mousedown)="startDrag($event)">
+            <img [src]="signatureImage" alt="Signature" class="signature-image">
+            <span class="resize-handle handle-nw" (mousedown)="startResize($event, 'nw')"></span>
+            <span class="resize-handle handle-ne" (mousedown)="startResize($event, 'ne')"></span>
+            <span class="resize-handle handle-sw" (mousedown)="startResize($event, 'sw')"></span>
+            <span class="resize-handle handle-se" (mousedown)="startResize($event, 'se')"></span>
+            <span class="resize-handle handle-n" (mousedown)="startResize($event, 'n')"></span>
+            <span class="resize-handle handle-e" (mousedown)="startResize($event, 'e')"></span>
+            <span class="resize-handle handle-s" (mousedown)="startResize($event, 's')"></span>
+            <span class="resize-handle handle-w" (mousedown)="startResize($event, 'w')"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signature Panel -->
+      <div class="col-md-4 signature-panel">
+        <h4 class="mb-4">Create Your Signature</h4>
+
+        <div class="mb-3">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <button class="nav-link" [class.active]="signatureMode === 'draw'" (click)="signatureMode = 'draw'">
+                Draw
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" [class.active]="signatureMode === 'type'" (click)="signatureMode = 'type'">
+                Type
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" [class.active]="signatureMode === 'upload'" (click)="signatureMode = 'upload'">
+                Upload
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Draw Mode -->
+        <div *ngIf="signatureMode === 'draw'" class="signature-pad-container">
+          <canvas 
+            #signatureCanvas 
+            width="350" 
+            height="150"
+            class="signature-canvas"
+            (mousedown)="startDrawing($event)"
+            (mousemove)="draw($event)"
+            (mouseup)="stopDrawing()"
+            (mouseleave)="stopDrawing()">
+          </canvas>
+          <button class="btn btn-sm btn-outline-secondary mt-2" (click)="clearSignature()">Clear</button>
+        </div>
+
+        <!-- Type Mode -->
+        <div *ngIf="signatureMode === 'type'">
+          <input 
+            type="text" 
+            class="form-control mb-3" 
+            [(ngModel)]="typedSignature"
+            placeholder="Type your name"
+            (input)="generateTypedSignature()">
+          <div class="typed-signature-preview" *ngIf="typedSignature">
+            <canvas #typedCanvas width="350" height="150"></canvas>
+          </div>
+        </div>
+
+        <!-- Upload Mode -->
+        <div *ngIf="signatureMode === 'upload'">
+          <input 
+            #fileInput
+            type="file" 
+            class="form-control" 
+            accept="image/*"
+            (change)="onSignatureFileSelected($event)">
+          <div *ngIf="uploadedSignature" class="mt-3">
+            <img [src]="uploadedSignature" alt="Uploaded signature" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-success w-100 mb-2" (click)="applySignature()" [disabled]="!hasSignature()">
+            <i class="bi bi-check-lg"></i> Apply Signature
+          </button>
+          <button class="btn btn-primary w-100" (click)="confirmSignature()" [disabled]="!signatureImage">
+            <i class="bi bi-file-earmark-check"></i> Confirm & Sign Document
+          </button>
+        </div>
+
+        <div class="mt-3 alert alert-info">
+          <small>
+            <i class="bi bi-info-circle"></i>
+            Create your signature, then drag and position it on the document where you want to sign.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
